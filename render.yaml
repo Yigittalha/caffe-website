@@ -5,12 +5,16 @@ services:
     buildCommand: |
       # Install Python dependencies
       pip install -r requirements.txt
-      # Install Node.js dependencies and build React app
-      npm install
+      # Clear npm cache and install Node.js dependencies
+      npm cache clean --force
+      npm install --legacy-peer-deps
+      # Build React app
       npm run build
     startCommand: python main.py
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_VERSION
+        value: 18.19.0
       - key: PYTHON_VERSION
         value: 3.11.5 

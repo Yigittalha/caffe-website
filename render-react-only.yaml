@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: caffe-react
+    env: static
+    buildCommand: |
+      # Install Node.js dependencies
+      npm cache clean --force
+      npm install --legacy-peer-deps
+      # Build React app
+      npm run build
+    staticPublishPath: ./build
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 18.19.0 
